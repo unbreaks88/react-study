@@ -2,7 +2,7 @@ import React, {useRef, useState, useCallback} from 'react';
 import './App.css';
 import produce from 'immer'
 
-export const App = () => {
+const App = () => {
     const nextId = useRef(1);
     const [form, setForm] = useState({name: '', username: ''});
     const [data, setData] = useState({
@@ -14,14 +14,10 @@ export const App = () => {
         e => {
             const {name, value} = e.target;
             setForm(
-                produce(form, draft => {
-                    draft[name] = value;
+                produce(draft => {
+                    draft[name] = value
                 })
             )
-            // setForm({
-            //     ...form,
-            //     [name]: [value]
-            // });
         }, [form]
     )
 
@@ -34,16 +30,10 @@ export const App = () => {
                 username: form.username
             };
             setData(
-                produce(data, draft => {
+                produce(draft => {
                     draft.array.push(info)
-                    // draft.array.concat(info);
                 })
             )
-            // setData({
-            //     ...data,
-            //     array: data.array.concat(info)
-            // });
-
             setForm({
                 name: '',
                 username: '',
@@ -54,14 +44,10 @@ export const App = () => {
     const onRemove = useCallback(
         id => {
             setData(
-                produce(data, draft => {
+                produce(draft => {
                     draft.array.splice(draft.array.findIndex(info => info.id === id), 1);
                 })
             );
-            // setData({
-            //     ...data,
-            //     array: data.array.filter(info => info.id !== id)
-            // });
         }, [data]
     )
     return (
@@ -91,23 +77,5 @@ export const App = () => {
         </div>
     )
 }
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
+
+export default App;
