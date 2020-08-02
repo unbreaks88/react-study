@@ -1,16 +1,20 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import ColorBox from "./components/ColorBox";
-import ColorContext from "./context/color";
+import {ColorProvider} from "./context/color";
 
 function App() {
     return (
-        <ColorContext.Provider value={{color: 'red'}}>
+        <ColorProvider>
             <div>
                 <ColorBox/>
             </div>
-        </ColorContext.Provider>
+        </ColorProvider>
+        // <ColorContext.Provider value={{color: 'red'}}>
+        //     <div>
+        //         <ColorBox/>
+        //     </div>
+        // </ColorContext.Provider>
     );
 }
 
